@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Alex Rivera — Full Stack Developer</title>
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
+
+<style>
+  :root{
+    --bg:#0a0a0f;
+    --bg-elevated:#12121a;
+    --bg-card:#15151f;
+    --border:#232330;
+    --text:#f2f2f5;
+    --text-dim:#9a9aab;
+    --accent:#7c5cff;
+    --accent-soft:rgba(124,92,255,.14);
+    padding-top: env(safe-area-inset-top, 0px);
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+  }
+  html{scroll-behavior:smooth; scroll-padding-top: calc(80px + env(safe-area-inset-top,0px));}
+  body{
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Inter', system-ui, -apple-system, Segoe UI, sans-serif;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,h4,.brand,.section-num{
+    font-family:'Space Grotesk', system-ui, sans-serif;
+  }
+  a{text-decoration:none;}
+
+  /* Navbar */
+  .navbar{
+    background:rgba(10,10,15,.75);
+    -webkit-backdrop-filter:blur(10px);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid var(--border);
+    padding-top:calc(.9rem + env(safe-area-inset-top,0px));
+    padding-bottom:.9rem;
+  }
+  .navbar-brand{color:var(--text)!important; font-weight:700; font-size:1.25rem;}
+  .navbar-brand .dot{color:var(--accent);}
+  .nav-link{color:var(--text-dim)!important; font-weight:500; margin:0 .6rem;}
+  .nav-link:hover{color:var(--text)!important;}
+  .btn-accent{
+    background:var(--accent); border:none; color:#fff; font-weight:600;
+    padding:.55rem 1.3rem; border-radius:8px;
+  }
+  .btn-accent:hover{background:#6a4ae0; color:#fff;}
+  .btn-outline-soft{
+    border:1px solid var(--border); color:var(--text); font-weight:600;
+    padding:.55rem 1.3rem; border-radius:8px;
+  }
+  .btn-outline-soft:hover{border-color:var(--accent); color:var(--accent);}
+
+  section{padding:6.5rem 0;}
+  .section-tag{
+    color:var(--accent); font-weight:600; letter-spacing:.08em;
+    text-transform:uppercase; font-size:.85rem;
+  }
+  .section-title{font-size:2.1rem; font-weight:700; margin-top:.4rem;}
+  .text-dim{color:var(--text-dim);}
+
+  /* Hero */
+  .hero{
+    min-height:92vh; display:flex; align-items:center;
+    background:
+      radial-gradient(circle at 15% 20%, var(--accent-soft), transparent 45%),
+      radial-gradient(circle at 85% 75%, rgba(124,92,255,.08), transparent 40%);
+  }
+  .badge-status{
+    border:1px solid var(--border); border-radius:50px; padding:.4rem 1rem;
+    color:var(--text-dim); font-size:.85rem; display:inline-flex; align-items:center; gap:.5rem;
+  }
+  .badge-status .dot{width:8px; height:8px; border-radius:50%; background:#3ddc84; display:inline-block; box-shadow:0 0 8px #3ddc84;}
+  .hero h1{font-size:clamp(2.4rem, 6vw, 4.2rem); font-weight:700; line-height:1.1;}
+  .hero .accent{color:var(--accent);}
+  .hero-roles{font-size:1.15rem; color:var(--text-dim); font-family:'Space Grotesk', sans-serif;}
+  .hero-roles .sep{color:var(--accent); margin:0 .5rem;}
+  .social-pill{
+    width:42px; height:42px; border-radius:50%; border:1px solid var(--border);
+    display:inline-flex; align-items:center; justify-content:center; color:var(--text-dim);
+  }
+  .social-pill:hover{border-color:var(--accent); color:var(--accent);}
+
+  /* About cards */
+  .about-card{
+    background:var(--bg-card); border:1px solid var(--border); border-radius:14px;
+    padding:1.6rem; height:100%; transition:.2s;
+  }
+  .about-card:hover{border-color:var(--accent); transform:translateY(-4px);}
+  .about-card .icon-box{
+    width:46px; height:46px; border-radius:10px; background:var(--accent-soft);
+    color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin-bottom:1rem;
+  }
+
+  /* Stack */
+  .stack-group{
+    background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:1.6rem; height:100%;
+  }
+  .stack-group h5{color:var(--accent); font-weight:600; margin-bottom:1rem;}
+  .chip{
+    display:inline-block; border:1px solid var(--border); border-radius:50px;
+    padding:.35rem .9rem; margin:.25rem; font-size:.85rem; color:var(--text-dim);
+  }
+
+  /* Portfolio */
+  .project-card{
+    background:var(--bg-card); border:1px solid var(--border); border-radius:16px; overflow:hidden;
+    height:100%; transition:.25s;
+  }
+  .project-card:hover{border-color:var(--accent); transform:translateY(-5px);}
+  .project-thumb{
+    height:190px; display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk',sans-serif; font-size:2.4rem; font-weight:700; color:rgba(255,255,255,.15);
+    background:linear-gradient(135deg, var(--accent-soft), transparent);
+    border-bottom:1px solid var(--border);
+  }
+  .project-body{padding:1.4rem;}
+  .tech-tag{
+    font-size:.72rem; color:var(--accent); background:var(--accent-soft);
+    padding:.2rem .6rem; border-radius:5px; margin:0 .25rem .25rem 0; display:inline-block;
+  }
+
+  /* Contact */
+  .contact-card{
+    background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:2rem;
+  }
+  .form-control{
+    background:var(--bg-elevated); border:1px solid var(--border); color:var(--text); padding:.7rem 1rem;
+  }
+  .form-control:focus{
+    background:var(--bg-elevated); color:var(--text); border-color:var(--accent);
+    box-shadow:0 0 0 .2rem var(--accent-soft);
+  }
+  .form-control::placeholder{color:#65657a;}
+  .contact-info-row{display:flex; gap:1rem; align-items:flex-start; margin-bottom:1.4rem;}
+  .contact-info-row .icon-box{
+    width:42px; height:42px; flex-shrink:0; border-radius:10px; background:var(--accent-soft);
+    color:var(--accent); display:flex; align-items:center; justify-content:center;
+  }
+
+  footer{border-top:1px solid var(--border); padding:2.5rem 0; padding-bottom: calc(2.5rem + env(safe-area-inset-bottom,0px));}
+  .navbar-toggler-light{filter:invert(1);}
+
+</style>
+</head>
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg fixed-top">
+  <div class="container">
+    <a class="navbar-brand" href="#">Allen<span class="dot">.</span></a>
+    <button class="navbar-toggler navbar-toggler-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
+      <ul class="navbar-nav align-items-lg-center gap-1">
+        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+        <li class="nav-item"><a class="nav-link" href="#stack">Stack</a></li>
+        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+        <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a class="btn btn-accent btn-sm" href="#contact">Let's Talk</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-9">
+        <span class="badge-status mb-4"><span class="dot"></span> Available for new projects</span>
+        <h1 class="mt-3 mb-3">Hi, I'm <span class="accent">Allen Moroni T. Villegas</span></h1>
+        <p class="hero-roles mb-4">Web and Mobile Developer <span class="sep">▸</span> AI Automation Engineer</p>
+        <p class="text-dim mb-5" style="max-width:560px; font-size:1.05rem;">
+          I build scalable, high-performance web applications — focused on clean code,
+          great client experience, and products people actually enjoy using.
+        </p>
+        <div class="d-flex flex-wrap gap-3 mb-5">
+          <a href="#portfolio" class="btn btn-accent">View My Work</a>
+          <a href="#contact" class="btn btn-outline-soft">Get in Touch</a>
+          <a href="file:///C:/Users/user/Downloads/Allen%20Moroni%20Resume.pdf" class="btn btn-outline-soft"><i class="bi bi-download me-1"></i>Resume</a>
+        </div>
+        <div class="d-flex align-items-center gap-3">
+          <a href="https://github.com/allenmoronivillegas-glitch" class="social-pill"><i class="bi bi-github"></i></a>
+          <a href="https://www.linkedin.com/in/allen-moroni-villegas-2024/" class="social-pill"><i class="bi bi-linkedin"></i></a>
+          <span class="text-dim">📍 Philippines</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="container">
+    <span class="section-tag">01 — About</span>
+    <h2 class="section-title mb-4">Turning ideas into reality</h2>
+    <p class="text-dim mb-5" style="max-width:680px; font-size:1.05rem;">
+      I'm a passionate developer who specializes in building modern web applications
+      that combine elegant design with powerful functionality. I enjoy turning complex problems
+      into simple, beautiful, and intuitive solutions — with 5+ years of hands-on experience
+      shipping real products.
+    </p>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="about-card">
+          <div class="icon-box"><i class="bi bi-code-slash"></i></div>
+          <h5>Clean Code</h5>
+          <p class="text-dim mb-0 small">Maintainable, well-structured code with clear naming and solid architecture.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="about-card">
+          <div class="icon-box"><i class="bi bi-layers"></i></div>
+          <h5>Full Stack</h5>
+          <p class="text-dim mb-0 small">From database schemas to pixel-perfect interfaces — I own the full lifecycle.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="about-card">
+          <div class="icon-box"><i class="bi bi-speedometer2"></i></div>
+          <h5>Performance First</h5>
+          <p class="text-dim mb-0 small">Obsessed with Core Web Vitals, fast load times, and smooth animations.</p>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="about-card">
+          <div class="icon-box"><i class="bi bi-people"></i></div>
+          <h5>Team Player</h5>
+          <p class="text-dim mb-0 small">Clear communicator and async collaborator, focused on delivering real value.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- STACK -->
+<section id="stack" style="background:var(--bg-elevated);">
+  <div class="container">
+    <span class="section-tag">02 — Stack</span>
+    <h2 class="section-title mb-4">Tools of the trade</h2>
+    <p class="text-dim mb-5" style="max-width:680px;">
+      A curated selection of technologies chosen for productivity, performance, and ecosystem strength.
+    </p>
+    <div class="row g-4">
+      <div class="col-md-6 col-lg-3">
+        <div class="stack-group">
+          <h5>Frontend</h5>
+          <div>
+            <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span>
+            <span class="chip">Dart</span><span class="chip">Bootstrap</span><span class="chip">Flutter</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="stack-group">
+          <h5>Backend</h5>
+          <div>
+            <span class="chip">Node.js</span><span class="chip">PHP</span><span class="chip">REST APIs</span>
+            <span class="chip">XAMPP</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="stack-group">
+          <h5>Database & Cloud</h5>
+          <div>
+            <span class="chip">MySQL</span>
+            <span class="chip">Firebase</span>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6 col-lg-3">
+        <div class="stack-group">
+          <h5>DevOps & Tools</h5>
+          <div>
+            <span class="chip">Git</span><span class="chip">Github</span><span class="chip">Gitlab</span>
+            <span class="chip">Android Studio</span><span class="chip">VS Code</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PORTFOLIO -->
+<section id="portfolio">
+  <div class="container">
+    <span class="section-tag">03 — Portfolio</span>
+    <h2 class="section-title mb-4">Selected work</h2>
+    <p class="text-dim mb-5" style="max-width:680px;">
+      Products built end to end — from internal dashboards to public-facing platforms.
+      Replace these with your own projects, screenshots, and case studies.
+    </p>
+    <div class="row g-4">
+
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <div class="project-thumb">01</div>
+          <div class="project-body">
+            <h5 class="mb-2">Project One</h5>
+            <p class="text-dim small mb-3">Multi-tenant SaaS platform with booking, payments, and reporting.</p>
+            <div class="mb-3"><span class="tech-tag">Laravel</span><span class="tech-tag">React</span><span class="tech-tag">MySQL</span></div>
+            <a href="#" class="text-decoration-none" style="color:var(--accent); font-weight:600; font-size:.9rem;">Source Code <i class="bi bi-arrow-up-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <div class="project-thumb">02</div>
+          <div class="project-body">
+            <h5 class="mb-2">Project Two</h5>
+            <p class="text-dim small mb-3">Document workflow and e-signature tool with audit trails.</p>
+            <div class="mb-3"><span class="tech-tag">Next.js</span><span class="tech-tag">Node.js</span><span class="tech-tag">PostgreSQL</span></div>
+            <a href="#" class="text-decoration-none" style="color:var(--accent); font-weight:600; font-size:.9rem;">Source Code <i class="bi bi-arrow-up-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <div class="project-thumb">03</div>
+          <div class="project-body">
+            <h5 class="mb-2">Project Three</h5>
+            <p class="text-dim small mb-3">Real-time infrastructure monitoring dashboard with alerting.</p>
+            <div class="mb-3"><span class="tech-tag">Vue.js</span><span class="tech-tag">Express</span><span class="tech-tag">Redis</span></div>
+            <a href="#" class="text-decoration-none" style="color:var(--accent); font-weight:600; font-size:.9rem;">Source Code <i class="bi bi-arrow-up-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <div class="project-thumb">04</div>
+          <div class="project-body">
+            <h5 class="mb-2">Project Four</h5>
+            <p class="text-dim small mb-3">Government-facing workflow tracker used across departments.</p>
+            <div class="mb-3"><span class="tech-tag">Laravel</span><span class="tech-tag">Tailwind</span><span class="tech-tag">MySQL</span></div>
+            <a href="#" class="text-decoration-none" style="color:var(--accent); font-weight:600; font-size:.9rem;">Source Code <i class="bi bi-arrow-up-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <div class="project-thumb">05</div>
+          <div class="project-body">
+            <h5 class="mb-2">Project Five</h5>
+            <p class="text-dim small mb-3">Campus research tracking system with reviewer assignment.</p>
+            <div class="mb-3"><span class="tech-tag">React</span><span class="tech-tag">Supabase</span></div>
+            <a href="#" class="text-decoration-none" style="color:var(--accent); font-weight:600; font-size:.9rem;">Source Code <i class="bi bi-arrow-up-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-6 col-lg-4">
+        <div class="project-card">
+          <div class="project-thumb">06</div>
+          <div class="project-body">
+            <h5 class="mb-2">Project Six</h5>
+            <p class="text-dim small mb-3">Court/queue operations app with QR check-in and POS.</p>
+            <div class="mb-3"><span class="tech-tag">Next.js</span><span class="tech-tag">MongoDB</span></div>
+            <a href="#" class="text-decoration-none" style="color:var(--accent); font-weight:600; font-size:.9rem;">Source Code <i class="bi bi-arrow-up-right"></i></a>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" style="background:var(--bg-elevated);">
+  <div class="container">
+    <span class="section-tag">04 — Contact</span>
+    <h2 class="section-title mb-5">Let's work together</h2>
+    <div class="row g-4">
+      <div class="col-lg-5">
+        <p class="text-dim mb-4">Have a project in mind, or just want to say hello? My inbox is always open — I'll get back to you within 24 hours.</p>
+
+        <div class="contact-info-row">
+          <div class="icon-box"><i class="bi bi-envelope"></i></div>
+          <div>
+            <div class="text-dim small">Email</div>
+            <div>allenmoronivillegas@gmail.com</div>
+          </div>
+        </div>
+        <div class="contact-info-row">
+          <div class="icon-box"><i class="bi bi-geo-alt"></i></div>
+          <div>
+            <div class="text-dim small">Location</div>
+            <div>Philippines 🇵🇭</div>
+          </div>
+        </div>
+        <div class="contact-info-row">
+          <div class="icon-box"><i class="bi bi-clock"></i></div>
+          <div>
+            <div class="text-dim small">Response time</div>
+            <div>Within 24 hours</div>
+          </div>
+        </div>
+
+        <div class="d-flex gap-3 mt-4">
+          <a href="https://github.com/allenmoronivillegas-glitch" class="social-pill"><i class="bi bi-github"></i></a>
+          <a href="https://www.facebook.com/allen.moroni.villegas.2024/" class="social-pill"><i class="bi bi-facebook"></i></a>
+        </div>
+      </div>
+
+      <div class="col-lg-7">
+        <div class="contact-card">
+          <form onsubmit="return false;">
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label small text-dim">Name *</label>
+                <input type="text" class="form-control" placeholder="Your name" required>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label small text-dim">Email *</label>
+                <input type="email" class="form-control" placeholder="you@example.com" required>
+              </div>
+              <div class="col-12">
+                <label class="form-label small text-dim">Subject</label>
+                <input type="text" class="form-control" placeholder="What's this about?">
+              </div>
+              <div class="col-12">
+                <label class="form-label small text-dim">Message *</label>
+                <textarea class="form-control" rows="5" placeholder="Tell me about your project..." required></textarea>
+              </div>
+              <div class="col-12">
+                <button class="btn btn-accent w-100" type="submit">Send Message</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+    <div>
+      <a href="#" class="navbar-brand">Allen<span class="dot">.</span></a>
+      <div class="text-dim small mt-1">Web and Mobile Developer</div>
+    </div>
+    <ul class="nav gap-2">
+      <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
+      <li class="nav-item"><a class="nav-link" href="#stack">Stack</a></li>
+      <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
+      <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
+    </ul>
+    <div class="text-dim small">© 2026 Allen Moroni Villegas. Built with Bootstrap.</div>
+  </div>
+</footer>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
