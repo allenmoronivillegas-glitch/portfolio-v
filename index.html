@@ -3,466 +3,245 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Alex Rivera — Full Stack Developer</title>
-
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/css/bootstrap.min.css">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.11.3/font/bootstrap-icons.min.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&display=swap">
-
+<title>Allen Moroni T. Villegas — Web & Mobile Developer</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&display=swap">
 <style>
-  :root{
-    --bg:#0a0a0f;
-    --bg-elevated:#12121a;
-    --bg-card:#15151f;
-    --border:#232330;
-    --text:#f2f2f5;
-    --text-dim:#9a9aab;
-    --accent:#7c5cff;
-    --accent-soft:rgba(124,92,255,.14);
-    padding-top: env(safe-area-inset-top, 0px);
-    padding-bottom: env(safe-area-inset-bottom, 0px);
-  }
-  html{scroll-behavior:smooth; scroll-padding-top: calc(80px + env(safe-area-inset-top,0px));}
-  body{
-    background:var(--bg);
-    color:var(--text);
-    font-family:'Inter', system-ui, -apple-system, Segoe UI, sans-serif;
-    overflow-x:hidden;
-  }
-  h1,h2,h3,h4,.brand,.section-num{
-    font-family:'Space Grotesk', system-ui, sans-serif;
-  }
-  a{text-decoration:none;}
+:root{
+  --bg:#0c1020; --card:#141a30; --line:#252d4a; --ink:#f0f3ff; --dim:#9aa4c7; --acc:#7c6cff; --acc2:#2fe6c1; --acc-t:#ffffff; --nav:rgba(12,16,32,.82);
+  box-sizing:border-box; padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+@media (prefers-color-scheme: light){
+  :root:not([data-theme="dark"]){--bg:#f3f5fc; --card:#ffffff; --line:#dde2f3; --ink:#12172b; --dim:#5b6484; --acc:#5b4bff; --acc2:#0ea88a; --nav:rgba(243,245,252,.88);}
+}
+:root[data-theme="light"]{--bg:#f3f5fc; --card:#ffffff; --line:#dde2f3; --ink:#12172b; --dim:#5b6484; --acc:#5b4bff; --acc2:#0ea88a; --nav:rgba(243,245,252,.88);}
+*{box-sizing:border-box;}
+html{scroll-behavior:smooth; scroll-padding-top:calc(5rem + env(safe-area-inset-top,0px));}
+body{margin:0; background:var(--bg); color:var(--ink); font:400 1.05rem/1.65 'Space Grotesk',system-ui,sans-serif; overflow-x:hidden;}
+a{color:inherit; text-decoration:none;}
+:focus-visible{outline:2px solid var(--acc2); outline-offset:3px; border-radius:6px;}
+.wrap{max-width:1140px; margin:0 auto; padding:0 1.25rem;}
+svg.i{width:1.1em; height:1.1em; fill:currentColor; vertical-align:-.16em;}
 
-  /* Navbar */
-  .navbar{
-    background:rgba(10,10,15,.75);
-    -webkit-backdrop-filter:blur(10px);
-    backdrop-filter:blur(10px);
-    border-bottom:1px solid var(--border);
-    padding-top:calc(.9rem + env(safe-area-inset-top,0px));
-    padding-bottom:.9rem;
-  }
-  .navbar-brand{color:var(--text)!important; font-weight:700; font-size:1.25rem;}
-  .navbar-brand .dot{color:var(--accent);}
-  .nav-link{color:var(--text-dim)!important; font-weight:500; margin:0 .6rem;}
-  .nav-link:hover{color:var(--text)!important;}
-  .btn-accent{
-    background:var(--accent); border:none; color:#fff; font-weight:600;
-    padding:.55rem 1.3rem; border-radius:8px;
-  }
-  .btn-accent:hover{background:#6a4ae0; color:#fff;}
-  .btn-outline-soft{
-    border:1px solid var(--border); color:var(--text); font-weight:600;
-    padding:.55rem 1.3rem; border-radius:8px;
-  }
-  .btn-outline-soft:hover{border-color:var(--accent); color:var(--accent);}
+nav{position:fixed; top:0; left:0; right:0; z-index:20; background:var(--nav); backdrop-filter:blur(12px); border-bottom:1px solid var(--line); padding-top:env(safe-area-inset-top,0px);}
+nav .wrap{display:flex; justify-content:space-between; align-items:center; height:3.8rem;}
+.brand{font-weight:700; font-size:1.1rem; letter-spacing:-.01em; display:flex; align-items:center; gap:.6rem;}
+.logo{width:34px; height:34px; border-radius:10px; background:linear-gradient(135deg,var(--acc),var(--acc2)); color:#0c1020; display:grid; place-items:center; font-size:.9rem; font-weight:700;}
+.nl{display:flex; gap:1.6rem; align-items:center; font-size:1rem; color:var(--dim); font-weight:500;}
+.nl a:hover{color:var(--ink);}
+.btn{display:inline-flex; align-items:center; gap:.5rem; font:600 1rem 'Space Grotesk',sans-serif; padding:.8rem 1.4rem; border-radius:999px; border:1.5px solid var(--line); background:var(--card); transition:transform .15s, box-shadow .15s, border-color .15s;}
+.btn:hover{transform:translateY(-2px); border-color:var(--acc); box-shadow:0 10px 24px -12px var(--acc);}
+.btn.pri{background:var(--acc); border-color:var(--acc); color:var(--acc-t);}
+@media (max-width:640px){.nl a:not(.btn){display:none;}}
 
-  section{padding:6.5rem 0;}
-  .section-tag{
-    color:var(--accent); font-weight:600; letter-spacing:.08em;
-    text-transform:uppercase; font-size:.85rem;
-  }
-  .section-title{font-size:2.1rem; font-weight:700; margin-top:.4rem;}
-  .text-dim{color:var(--text-dim);}
+/* hero */
+.hero{position:relative; padding:9rem 0 4rem; overflow:hidden;}
+.orb{position:absolute; border-radius:50%; filter:blur(90px); opacity:.28; z-index:-1;}
+.o1{width:420px; height:420px; background:var(--acc); top:-80px; right:-100px;}
+.o2{width:320px; height:320px; background:var(--acc2); bottom:-60px; left:-120px; opacity:.18;}
+.status{display:inline-flex; align-items:center; gap:.6rem; border:1px solid var(--line); background:var(--card); border-radius:999px; padding:.4rem 1rem; font-size:.95rem; color:var(--dim);}
+.dot{width:9px; height:9px; border-radius:50%; background:var(--acc2); position:relative;}
+.hero h1{font-size:clamp(2.8rem,9.2vw,7rem); line-height:.98; letter-spacing:-.045em; font-weight:700; margin:1.4rem 0 1.2rem;}
+.role{font-size:clamp(1.3rem,2.6vw,1.9rem); font-weight:500; color:var(--acc2); margin:0 0 1rem;}
+.lead{color:var(--dim); font-size:1.15rem; max-width:38rem; margin:0 0 2rem;}
+.row{display:flex; flex-wrap:wrap; gap:.8rem;}
 
-  /* Hero */
-  .hero{
-    min-height:92vh; display:flex; align-items:center;
-    background:
-      radial-gradient(circle at 15% 20%, var(--accent-soft), transparent 45%),
-      radial-gradient(circle at 85% 75%, rgba(124,92,255,.08), transparent 40%);
-  }
-  .badge-status{
-    border:1px solid var(--border); border-radius:50px; padding:.4rem 1rem;
-    color:var(--text-dim); font-size:.85rem; display:inline-flex; align-items:center; gap:.5rem;
-  }
-  .badge-status .dot{width:8px; height:8px; border-radius:50%; background:#3ddc84; display:inline-block; box-shadow:0 0 8px #3ddc84;}
-  .hero h1{font-size:clamp(2.4rem, 6vw, 4.2rem); font-weight:700; line-height:1.1;}
-  .hero .accent{color:var(--accent);}
-  .hero-roles{font-size:1.15rem; color:var(--text-dim); font-family:'Space Grotesk', sans-serif;}
-  .hero-roles .sep{color:var(--accent); margin:0 .5rem;}
-  .social-pill{
-    width:42px; height:42px; border-radius:50%; border:1px solid var(--border);
-    display:inline-flex; align-items:center; justify-content:center; color:var(--text-dim);
-  }
-  .social-pill:hover{border-color:var(--accent); color:var(--accent);}
+/* marquee */
+.marq{border-block:1px solid var(--line); overflow:hidden; padding:1rem 0; background:var(--card);}
+.track{display:flex; gap:2.5rem; width:max-content; font-weight:600; font-size:1.15rem; color:var(--dim);}
+.track span::after{content:"•"; margin-left:2.5rem; color:var(--acc);}
 
-  /* About cards */
-  .about-card{
-    background:var(--bg-card); border:1px solid var(--border); border-radius:14px;
-    padding:1.6rem; height:100%; transition:.2s;
-  }
-  .about-card:hover{border-color:var(--accent); transform:translateY(-4px);}
-  .about-card .icon-box{
-    width:46px; height:46px; border-radius:10px; background:var(--accent-soft);
-    color:var(--accent); display:flex; align-items:center; justify-content:center; font-size:1.3rem; margin-bottom:1rem;
-  }
+/* sections */
+section.blk{padding:6rem 0 1rem;}
+.tag{font-weight:600; font-size:1rem; color:var(--acc2); margin:0 0 .5rem;}
+h2{font-size:clamp(2rem,4.2vw,3.2rem); line-height:1.1; letter-spacing:-.035em; margin:0 0 2rem; max-width:40rem;}
+.about{display:grid; grid-template-columns:1fr 1fr; gap:3rem; align-items:start;}
+@media (max-width:820px){.about{grid-template-columns:1fr;}}
+.about h2{margin:0;}
+.pt{padding:1.3rem 0; border-bottom:1px solid var(--line);}
+.pt:first-child{padding-top:0;}
+.pt:last-child{border:none;}
+.pt h3{margin:0 0 .3rem; font-size:1.25rem; letter-spacing:-.01em;}
+.pt p{margin:0; color:var(--dim);}
 
-  /* Stack */
-  .stack-group{
-    background:var(--bg-card); border:1px solid var(--border); border-radius:14px; padding:1.6rem; height:100%;
-  }
-  .stack-group h5{color:var(--accent); font-weight:600; margin-bottom:1rem;}
-  .chip{
-    display:inline-block; border:1px solid var(--border); border-radius:50px;
-    padding:.35rem .9rem; margin:.25rem; font-size:.85rem; color:var(--text-dim);
-  }
+.grid4{display:grid; grid-template-columns:repeat(4,1fr); gap:1rem;}
+@media (max-width:980px){.grid4{grid-template-columns:repeat(2,1fr);}}
+@media (max-width:560px){.grid4{grid-template-columns:1fr;}}
+.tile{background:var(--card); border:1px solid var(--line); border-radius:22px; padding:1.6rem; transition:transform .2s, border-color .2s;}
+.tile:hover{border-color:var(--acc); transform:translateY(-4px);}
+.tile h3{margin:0 0 1rem; font-size:1.25rem;}
+.chips{display:flex; flex-wrap:wrap; gap:.45rem;}
+.chip{font-size:.92rem; border:1px solid var(--line); border-radius:999px; padding:.2rem .8rem; color:var(--dim);}
 
-  /* Portfolio */
-  .project-card{
-    background:var(--bg-card); border:1px solid var(--border); border-radius:16px; overflow:hidden;
-    height:100%; transition:.25s;
-  }
-  .project-card:hover{border-color:var(--accent); transform:translateY(-5px);}
-  .project-thumb{
-    height:190px; display:flex; align-items:center; justify-content:center;
-    font-family:'Space Grotesk',sans-serif; font-size:2.4rem; font-weight:700; color:rgba(255,255,255,.15);
-    background:linear-gradient(135deg, var(--accent-soft), transparent);
-    border-bottom:1px solid var(--border);
-  }
-  .project-body{padding:1.4rem;}
-  .tech-tag{
-    font-size:.72rem; color:var(--accent); background:var(--accent-soft);
-    padding:.2rem .6rem; border-radius:5px; margin:0 .25rem .25rem 0; display:inline-block;
-  }
+.g3{display:grid; grid-template-columns:repeat(3,1fr); gap:1.2rem;}
+@media (max-width:900px){.g3{grid-template-columns:1fr;}}
+.proj{padding:0; overflow:hidden; display:flex; flex-direction:column;}
+.pbody{padding:1.4rem 1.6rem 1.7rem; display:flex; flex-direction:column; gap:.6rem; flex:1;}
+.pbody h3{margin:0; font-size:1.35rem; letter-spacing:-.015em;}
+.pbody p{margin:0; color:var(--dim); flex:1;}
+/* thumbnail slot: replace the placeholder div with <img class="thumb" src="images/your-file.png" alt="..."> */
+.thumb{aspect-ratio:16/9; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:.4rem; color:var(--dim); font-size:.9rem; background:repeating-linear-gradient(135deg,transparent 0 12px,var(--line) 12px 13px),var(--bg); border-bottom:1px dashed var(--line);}
+.thumb svg{width:2.2rem; height:2.2rem; fill:none; stroke:currentColor; stroke-width:1.5; stroke-linecap:round; stroke-linejoin:round; opacity:.8;}
+img.thumb{display:block; width:100%; height:auto; object-fit:cover; border-bottom:1px solid var(--line);}
 
-  /* Contact */
-  .contact-card{
-    background:var(--bg-card); border:1px solid var(--border); border-radius:16px; padding:2rem;
-  }
-  .form-control{
-    background:var(--bg-elevated); border:1px solid var(--border); color:var(--text); padding:.7rem 1rem;
-  }
-  .form-control:focus{
-    background:var(--bg-elevated); color:var(--text); border-color:var(--accent);
-    box-shadow:0 0 0 .2rem var(--accent-soft);
-  }
-  .form-control::placeholder{color:#65657a;}
-  .contact-info-row{display:flex; gap:1rem; align-items:flex-start; margin-bottom:1.4rem;}
-  .contact-info-row .icon-box{
-    width:42px; height:42px; flex-shrink:0; border-radius:10px; background:var(--accent-soft);
-    color:var(--accent); display:flex; align-items:center; justify-content:center;
-  }
 
-  footer{border-top:1px solid var(--border); padding:2.5rem 0; padding-bottom: calc(2.5rem + env(safe-area-inset-bottom,0px));}
-  .navbar-toggler-light{filter:invert(1);}
+/* contact */
+.contact{display:grid; grid-template-columns:1fr 1.15fr; border-radius:30px; overflow:hidden; border:1px solid var(--line);}
+@media (max-width:860px){.contact{grid-template-columns:1fr;}}
+.cl{background:linear-gradient(135deg,var(--acc),#a24bff); color:#fff; padding:3rem 2.2rem; display:flex; flex-direction:column; gap:1rem;}
+.cl h2{margin:0; color:#fff; font-size:clamp(1.9rem,3.6vw,2.7rem);}
+.cl p{margin:0; opacity:.9;}
+.cl ul{list-style:none; margin:auto 0 0; padding:1.5rem 0 0; display:flex; flex-direction:column; gap:.6rem; font-size:1rem;}
+.cl li{display:flex; gap:.7rem; align-items:center;}
+.cl a:hover{text-decoration:underline;}
+.cf{background:var(--card); padding:2.4rem 2.2rem; display:flex; flex-direction:column; gap:1.1rem;}
+.cf label{display:flex; flex-direction:column; gap:.4rem; font-weight:600; font-size:.98rem;}
+.cf input,.cf textarea{font:400 1rem 'Space Grotesk',sans-serif; color:var(--ink); background:var(--bg); border:1.5px solid var(--line); border-radius:12px; padding:.85rem 1rem; width:100%; transition:border-color .15s, box-shadow .15s;}
+.cf textarea{min-height:9rem; resize:vertical;}
+.cf input::placeholder,.cf textarea::placeholder{color:var(--dim); opacity:.7;}
+.cf input:focus,.cf textarea:focus{outline:none; border-color:var(--acc); box-shadow:0 0 0 3px color-mix(in srgb,var(--acc) 25%,transparent);}
+.cf .btn{align-self:flex-start; cursor:pointer;}
+.note{margin:0; font-size:.95rem; color:var(--acc2); min-height:1.4em;}
+footer{padding:3rem 0 calc(3rem + env(safe-area-inset-bottom,0px)); color:var(--dim); font-size:.95rem;}
+footer .wrap{display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between;}
 
+@media (prefers-reduced-motion: no-preference){
+  .hero .wrap>*{animation:rise .8s ease both;}
+  .hero .wrap>*:nth-child(2){animation-delay:.1s;} .hero .wrap>*:nth-child(3){animation-delay:.2s;}
+  .hero .wrap>*:nth-child(4){animation-delay:.3s;} .hero .wrap>*:nth-child(5){animation-delay:.4s;}
+  .dot::after{content:""; position:absolute; inset:0; border-radius:50%; background:var(--acc2); animation:ping 2s ease-out infinite;}
+  .orb{animation:drift 12s ease-in-out infinite alternate;}
+  .track{animation:scroll 32s linear infinite;}
+  .marq:hover .track{animation-play-state:paused;}
+}
+@keyframes rise{from{opacity:0; transform:translateY(18px);}to{opacity:1; transform:none;}}
+@keyframes ping{to{transform:scale(2.8); opacity:0;}}
+@keyframes drift{to{transform:translate(30px,40px);}}
+@keyframes scroll{to{transform:translateX(-50%);}}
 </style>
 </head>
 <body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="gh" viewBox="0 0 16 16"><path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38v-1.33c-2.23.48-2.7-1.07-2.7-1.07-.36-.92-.89-1.17-.89-1.17-.73-.5.05-.49.05-.49.8.06 1.23.83 1.23.83.71 1.22 1.87.87 2.33.66.07-.52.28-.87.5-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82a7.6 7.6 0 0 1 4 0c1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48v2.2c0 .21.15.46.55.38A8 8 0 0 0 16 8c0-4.42-3.58-8-8-8z"/></symbol>
+  <symbol id="ml" viewBox="0 0 16 16"><path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v.2L8 9 0 4.2V4zm0 1.4V12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V5.4L8 10.3 0 5.4z"/></symbol>
+</svg>
 
-<!-- NAVBAR -->
-<nav class="navbar navbar-expand-lg fixed-top">
-  <div class="container">
-    <a class="navbar-brand" href="#">Allen<span class="dot">.</span></a>
-    <button class="navbar-toggler navbar-toggler-light" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse justify-content-end" id="navMenu">
-      <ul class="navbar-nav align-items-lg-center gap-1">
-        <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-        <li class="nav-item"><a class="nav-link" href="#stack">Stack</a></li>
-        <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-        <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-        <li class="nav-item ms-lg-2 mt-2 mt-lg-0"><a class="btn btn-accent btn-sm" href="#contact">Let's Talk</a></li>
-      </ul>
+<nav>
+  <div class="wrap">
+    <a href="#top" class="brand"><span class="logo">AV</span>Allen Villegas</a>
+    <div class="nl">
+      <a href="#about">About</a><a href="#skills">Skills</a><a href="#work">Projects</a>
+      <a href="#contact" class="btn pri" style="padding:.5rem 1.1rem">Contact</a>
     </div>
   </div>
 </nav>
 
-<!-- HERO -->
-<header class="hero">
-  <div class="container">
-    <div class="row align-items-center">
-      <div class="col-lg-9">
-        <span class="badge-status mb-4"><span class="dot"></span> Available for new projects</span>
-        <h1 class="mt-3 mb-3">Hi, I'm <span class="accent">Allen Moroni T. Villegas</span></h1>
-        <p class="hero-roles mb-4">Web and Mobile Developer <span class="sep">▸</span> AI Automation Engineer</p>
-        <p class="text-dim mb-5" style="max-width:560px; font-size:1.05rem;">
-          I build scalable, high-performance web applications — focused on clean code,
-          great client experience, and products people actually enjoy using.
-        </p>
-        <div class="d-flex flex-wrap gap-3 mb-5">
-          <a href="#portfolio" class="btn btn-accent">View My Work</a>
-          <a href="#contact" class="btn btn-outline-soft">Get in Touch</a>
-          <a href="file:///C:/Users/user/Downloads/Allen%20Moroni%20Resume.pdf" class="btn btn-outline-soft"><i class="bi bi-download me-1"></i>Resume</a>
-        </div>
-        <div class="d-flex align-items-center gap-3">
-          <a href="https://github.com/allenmoronivillegas-glitch" class="social-pill"><i class="bi bi-github"></i></a>
-          <a href="https://www.linkedin.com/in/allen-moroni-villegas-2024/" class="social-pill"><i class="bi bi-linkedin"></i></a>
-          <span class="text-dim">📍 Philippines</span>
-        </div>
-      </div>
+<header class="hero" id="top">
+  <span class="orb o1"></span><span class="orb o2"></span>
+  <div class="wrap">
+    <span class="status"><span class="dot"></span>Available for freelance work</span>
+    <h1>Allen Moroni T. Villegas</h1>
+    <p class="role">Web and Mobile developer</p>
+    <p class="lead">I build Flutter mobile apps and PHP/HTML web platforms, from the database to the last pixel. Based in the Philippines.</p>
+    <div class="row">
+      <a href="#work" class="btn pri">View projects</a>
+      <a href="https://github.com/allenmoronivillegas-glitch" class="btn"><svg class="i"><use href="#gh"/></svg> GitHub</a>
+      <a href="mailto:allenmoronivillegas@gmail.com" class="btn"><svg class="i"><use href="#ml"/></svg> Email me</a>
     </div>
   </div>
 </header>
 
-<!-- ABOUT -->
-<section id="about">
-  <div class="container">
-    <span class="section-tag">01 — About</span>
-    <h2 class="section-title mb-4">Turning ideas into reality</h2>
-    <p class="text-dim mb-5" style="max-width:680px; font-size:1.05rem;">
-      I'm a passionate developer who specializes in building modern web applications
-      that combine elegant design with powerful functionality. I enjoy turning complex problems
-      into simple, beautiful, and intuitive solutions — with 5+ years of hands-on experience
-      shipping real products.
-    </p>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-3">
-        <div class="about-card">
-          <div class="icon-box"><i class="bi bi-code-slash"></i></div>
-          <h5>Clean Code</h5>
-          <p class="text-dim mb-0 small">Maintainable, well-structured code with clear naming and solid architecture.</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="about-card">
-          <div class="icon-box"><i class="bi bi-layers"></i></div>
-          <h5>Full Stack</h5>
-          <p class="text-dim mb-0 small">From database schemas to pixel-perfect interfaces — I own the full lifecycle.</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="about-card">
-          <div class="icon-box"><i class="bi bi-speedometer2"></i></div>
-          <h5>Performance First</h5>
-          <p class="text-dim mb-0 small">Obsessed with Core Web Vitals, fast load times, and smooth animations.</p>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="about-card">
-          <div class="icon-box"><i class="bi bi-people"></i></div>
-          <h5>Team Player</h5>
-          <p class="text-dim mb-0 small">Clear communicator and async collaborator, focused on delivering real value.</p>
-        </div>
-      </div>
-    </div>
+<div class="marq" aria-hidden="true">
+  <div class="track">
+    <span>Flutter</span><span>Dart</span><span>PHP</span><span>Node.js</span><span>JavaScript</span><span>MySQL</span><span>Firebase</span><span>Bootstrap</span><span>Git</span>
+    <span>Flutter</span><span>Dart</span><span>PHP</span><span>Node.js</span><span>JavaScript</span><span>MySQL</span><span>Firebase</span><span>Bootstrap</span><span>Git</span>
   </div>
-</section>
+</div>
 
-<!-- STACK -->
-<section id="stack" style="background:var(--bg-elevated);">
-  <div class="container">
-    <span class="section-tag">02 — Stack</span>
-    <h2 class="section-title mb-4">Tools of the trade</h2>
-    <p class="text-dim mb-5" style="max-width:680px;">
-      A curated selection of technologies chosen for productivity, performance, and ecosystem strength.
-    </p>
-    <div class="row g-4">
-      <div class="col-md-6 col-lg-3">
-        <div class="stack-group">
-          <h5>Frontend</h5>
-          <div>
-            <span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span>
-            <span class="chip">Dart</span><span class="chip">Bootstrap</span><span class="chip">Flutter</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="stack-group">
-          <h5>Backend</h5>
-          <div>
-            <span class="chip">Node.js</span><span class="chip">PHP</span><span class="chip">REST APIs</span>
-            <span class="chip">XAMPP</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="stack-group">
-          <h5>Database & Cloud</h5>
-          <div>
-            <span class="chip">MySQL</span>
-            <span class="chip">Firebase</span>
-          </div>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-3">
-        <div class="stack-group">
-          <h5>DevOps & Tools</h5>
-          <div>
-            <span class="chip">Git</span><span class="chip">Github</span><span class="chip">Gitlab</span>
-            <span class="chip">Android Studio</span><span class="chip">VS Code</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PORTFOLIO -->
-<section id="portfolio">
-  <div class="container">
-    <span class="section-tag">03 — Portfolio</span>
-    <h2 class="section-title mb-4">Selected work</h2>
-    <p class="text-dim mb-5" style="max-width:680px;">
-      Products built end to end — from internal dashboards to public-facing platforms.
-      Replace these with your own projects, screenshots, and case studies.
-    </p>
-    <div class="row g-4">
-
-      <div class="col-md-6 col-lg-4">
-        <div class="project-card">
-          <div class="project-thumb">01</div>
-          <div class="project-body">
-            <h5 class="mb-2">Project One</h5>
-            <p class="text-dim small mb-3">Multi-tenant SaaS platform with booking, payments, and reporting.</p>
-            <div class="mb-3"><span class="tech-tag">Laravel</span><span class="tech-tag">React</span><span class="tech-tag">MySQL</span></div>
-            <a href="#" class="text-decoration-none" style="color:var(--accent); font-weight:600; font-size:.9rem;">Source Code <i class="bi bi-arrow-up-right"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="project-card">
-          <div class="project-thumb">02</div>
-          <div class="project-body">
-            <h5 class="mb-2">Project Two</h5>
-            <p class="text-dim small mb-3">Document workflow and e-signature tool with audit trails.</p>
-            <div class="mb-3"><span class="tech-tag">Next.js</span><span class="tech-tag">Node.js</span><span class="tech-tag">PostgreSQL</span></div>
-            <a href="#" class="text-decoration-none" style="color:var(--accent); font-weight:600; font-size:.9rem;">Source Code <i class="bi bi-arrow-up-right"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="project-card">
-          <div class="project-thumb">03</div>
-          <div class="project-body">
-            <h5 class="mb-2">Project Three</h5>
-            <p class="text-dim small mb-3">Real-time infrastructure monitoring dashboard with alerting.</p>
-            <div class="mb-3"><span class="tech-tag">Vue.js</span><span class="tech-tag">Express</span><span class="tech-tag">Redis</span></div>
-            <a href="#" class="text-decoration-none" style="color:var(--accent); font-weight:600; font-size:.9rem;">Source Code <i class="bi bi-arrow-up-right"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="project-card">
-          <div class="project-thumb">04</div>
-          <div class="project-body">
-            <h5 class="mb-2">Project Four</h5>
-            <p class="text-dim small mb-3">Government-facing workflow tracker used across departments.</p>
-            <div class="mb-3"><span class="tech-tag">Laravel</span><span class="tech-tag">Tailwind</span><span class="tech-tag">MySQL</span></div>
-            <a href="#" class="text-decoration-none" style="color:var(--accent); font-weight:600; font-size:.9rem;">Source Code <i class="bi bi-arrow-up-right"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="project-card">
-          <div class="project-thumb">05</div>
-          <div class="project-body">
-            <h5 class="mb-2">Project Five</h5>
-            <p class="text-dim small mb-3">Campus research tracking system with reviewer assignment.</p>
-            <div class="mb-3"><span class="tech-tag">React</span><span class="tech-tag">Supabase</span></div>
-            <a href="#" class="text-decoration-none" style="color:var(--accent); font-weight:600; font-size:.9rem;">Source Code <i class="bi bi-arrow-up-right"></i></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-4">
-        <div class="project-card">
-          <div class="project-thumb">06</div>
-          <div class="project-body">
-            <h5 class="mb-2">Project Six</h5>
-            <p class="text-dim small mb-3">Court/queue operations app with QR check-in and POS.</p>
-            <div class="mb-3"><span class="tech-tag">Next.js</span><span class="tech-tag">MongoDB</span></div>
-            <a href="#" class="text-decoration-none" style="color:var(--accent); font-weight:600; font-size:.9rem;">Source Code <i class="bi bi-arrow-up-right"></i></a>
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-</section>
-
-<!-- CONTACT -->
-<section id="contact" style="background:var(--bg-elevated);">
-  <div class="container">
-    <span class="section-tag">04 — Contact</span>
-    <h2 class="section-title mb-5">Let's work together</h2>
-    <div class="row g-4">
-      <div class="col-lg-5">
-        <p class="text-dim mb-4">Have a project in mind, or just want to say hello? My inbox is always open — I'll get back to you within 24 hours.</p>
-
-        <div class="contact-info-row">
-          <div class="icon-box"><i class="bi bi-envelope"></i></div>
-          <div>
-            <div class="text-dim small">Email</div>
-            <div>allenmoronivillegas@gmail.com</div>
-          </div>
-        </div>
-        <div class="contact-info-row">
-          <div class="icon-box"><i class="bi bi-geo-alt"></i></div>
-          <div>
-            <div class="text-dim small">Location</div>
-            <div>Philippines 🇵🇭</div>
-          </div>
-        </div>
-        <div class="contact-info-row">
-          <div class="icon-box"><i class="bi bi-clock"></i></div>
-          <div>
-            <div class="text-dim small">Response time</div>
-            <div>Within 24 hours</div>
-          </div>
-        </div>
-
-        <div class="d-flex gap-3 mt-4">
-          <a href="https://github.com/allenmoronivillegas-glitch" class="social-pill"><i class="bi bi-github"></i></a>
-          <a href="https://www.facebook.com/allen.moroni.villegas.2024/" class="social-pill"><i class="bi bi-facebook"></i></a>
-        </div>
-      </div>
-
-      <div class="col-lg-7">
-        <div class="contact-card">
-          <form onsubmit="return false;">
-            <div class="row g-3">
-              <div class="col-md-6">
-                <label class="form-label small text-dim">Name *</label>
-                <input type="text" class="form-control" placeholder="Your name" required>
-              </div>
-              <div class="col-md-6">
-                <label class="form-label small text-dim">Email *</label>
-                <input type="email" class="form-control" placeholder="you@example.com" required>
-              </div>
-              <div class="col-12">
-                <label class="form-label small text-dim">Subject</label>
-                <input type="text" class="form-control" placeholder="What's this about?">
-              </div>
-              <div class="col-12">
-                <label class="form-label small text-dim">Message *</label>
-                <textarea class="form-control" rows="5" placeholder="Tell me about your project..." required></textarea>
-              </div>
-              <div class="col-12">
-                <button class="btn btn-accent w-100" type="submit">Send Message</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="container d-flex flex-wrap justify-content-between align-items-center gap-3">
+<section class="blk" id="about">
+  <div class="wrap about">
     <div>
-      <a href="#" class="navbar-brand">Allen<span class="dot">.</span></a>
-      <div class="text-dim small mt-1">Web and Mobile Developer</div>
+      <p class="tag">About</p>
+      <h2>I care more about a project working end to end than chasing whatever's trending.</h2>
     </div>
-    <ul class="nav gap-2">
-      <li class="nav-item"><a class="nav-link" href="#about">About</a></li>
-      <li class="nav-item"><a class="nav-link" href="#stack">Stack</a></li>
-      <li class="nav-item"><a class="nav-link" href="#portfolio">Portfolio</a></li>
-      <li class="nav-item"><a class="nav-link" href="#contact">Contact</a></li>
-    </ul>
-    <div class="text-dim small">© 2026 Allen Moroni Villegas. Built with Bootstrap.</div>
+    <div>
+      <div class="pt"><h3>Web, start to finish</h3><p>PHP and Node.js on the backend, clean HTML, CSS and Bootstrap on the front. No missing pieces.</p></div>
+      <div class="pt"><h3>Mobile that feels native</h3><p>Flutter and Dart for cross-platform apps that don't feel like a compromise.</p></div>
+      <div class="pt"><h3>Fast, direct communication</h3><p>Based in the Philippines. I reply within a day, no runaround.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="skills">
+  <div class="wrap">
+    <p class="tag">Skills</p>
+    <h2>What I build with</h2>
+    <div class="grid4">
+      <div class="tile"><h3>Mobile</h3><div class="chips"><span class="chip">Flutter</span><span class="chip">Dart</span><span class="chip">Android Studio</span></div></div>
+      <div class="tile"><h3>Backend and data</h3><div class="chips"><span class="chip">Node.js</span><span class="chip">PHP</span><span class="chip">XAMPP</span><span class="chip">MySQL</span><span class="chip">Firebase</span></div></div>
+      <div class="tile"><h3>Frontend</h3><div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">Bootstrap</span></div></div>
+      <div class="tile"><h3>Tools</h3><div class="chips"><span class="chip">Git</span><span class="chip">GitHub</span><span class="chip">GitLab</span><span class="chip">VS Code</span></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="work">
+  <div class="wrap">
+    <p class="tag">Projects</p>
+    <h2>Things I've built</h2>
+    <!-- Placeholders: replace titles and descriptions, and wrap each card in a link to your repo.
+         Thumbnails: replace each <div class="thumb">…</div> with <img class="thumb" src="images/your-file.png" alt="Project name screenshot"> (16:9, e.g. 1280x720) -->
+    <div class="g3">
+      <div class="tile proj"><div class="thumb"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>Thumbnail 1280×720</div><div class="pbody"><h3>Queue Manager</h3><p>Flutter app for live queue status and walk-in handling.</p><div class="chips"><span class="chip">Flutter</span><span class="chip">Firebase</span></div></div></div>
+      <div class="tile proj"><div class="thumb"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>Thumbnail 1280×720</div><div class="pbody"><h3>Inventory Tracker</h3><p>Stock tracking with low-stock alerts for retail.</p><div class="chips"><span class="chip">PHP</span><span class="chip">MySQL</span></div></div></div>
+      <div class="tile proj"><div class="thumb"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>Thumbnail 1280×720</div><div class="pbody"><h3>Student Portal</h3><p>Grades and enrollment status with a Node.js API backend.</p><div class="chips"><span class="chip">JavaScript</span><span class="chip">Node.js</span></div></div></div>
+      <div class="tile proj"><div class="thumb"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>Thumbnail 1280×720</div><div class="pbody"><h3>Budget Tracker</h3><p>Offline-first expense tracker with monthly summaries.</p><div class="chips"><span class="chip">Flutter</span><span class="chip">Dart</span></div></div></div>
+      <div class="tile proj"><div class="thumb"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>Thumbnail 1280×720</div><div class="pbody"><h3>POS System</h3><p>Point-of-sale with receipt printing and daily reports.</p><div class="chips"><span class="chip">PHP</span><span class="chip">XAMPP</span></div></div></div>
+      <div class="tile proj"><div class="thumb"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="9" cy="10" r="1.6"/><path d="M21 16l-5-5-8 8"/></svg>Thumbnail 1280×720</div><div class="pbody"><h3>This portfolio</h3><p>A single-page site built with HTML, CSS and a little JavaScript.</p><div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span></div></div></div>
+    </div>
+  </div>
+</section>
+
+<section class="blk" id="contact">
+  <div class="wrap">
+    <div class="contact">
+      <div class="cl">
+        <h2>Let's build something together.</h2>
+        <p>Have a project, an idea or a role in mind? Send me a message and I'll reply within a day.</p>
+        <ul>
+          <li><svg class="i"><use href="#ml"/></svg><a href="mailto:allenmoronivillegas@gmail.com">allenmoronivillegas@gmail.com</a></li>
+          <li><svg class="i"><use href="#gh"/></svg><a href="https://github.com/allenmoronivillegas-glitch">github.com/allenmoronivillegas-glitch</a></li>
+          <li>Philippines · Replies within 24 hours</li>
+        </ul>
+      </div>
+      <!-- This form opens the visitor's email app with the message filled in.
+           To receive messages directly, set action to your Formspree (or similar) endpoint and remove the script below. -->
+      <form class="cf" id="cform" novalidate>
+        <label>Your name<input type="text" name="name" placeholder="Juan Dela Cruz" autocomplete="name" required></label>
+        <label>Your email<input type="email" name="email" placeholder="you@example.com" autocomplete="email" required></label>
+        <label>Message<textarea name="message" placeholder="Tell me about your project" required></textarea></label>
+        <button type="submit" class="btn pri">Send message</button>
+        <p class="note" id="note" role="status"></p>
+      </form>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <span>© 2026 Allen Moroni T. Villegas</span>
+    <span>Web and mobile developer, Philippines</span>
   </div>
 </footer>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.3/js/bootstrap.bundle.min.js"></script>
+<script>
+  var f = document.getElementById('cform'), note = document.getElementById('note');
+  f.addEventListener('submit', function (e) {
+    e.preventDefault();
+    var n = f.name.value.trim(), m = f.email.value.trim(), t = f.message.value.trim();
+    if (!n || !/^\S+@\S+\.\S+$/.test(m) || !t) { note.style.color = '#ff6b8a'; note.textContent = 'Please fill in your name, a valid email and a message.'; return; }
+    var body = t + '\n\n— ' + n + ' (' + m + ')';
+    window.location.href = 'mailto:allenmoronivillegas@gmail.com?subject=' + encodeURIComponent('Portfolio message from ' + n) + '&body=' + encodeURIComponent(body);
+    note.style.color = ''; note.textContent = 'Opening your email app. If nothing happens, write to allenmoronivillegas@gmail.com.';
+  });
+</script>
 </body>
 </html>
